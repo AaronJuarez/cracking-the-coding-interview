@@ -1,20 +1,16 @@
 package com.cracking.questions;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class UniqueCharactersInString {
 	
-	public boolean isUnique(String phrase) {
-		Map<Character, Boolean> dictionary = new HashMap<>();
-		
-		for(int i=0; i<phrase.length(); i++) {
-			char currentChar = phrase.charAt(i);
-			if(!dictionary.containsKey(currentChar)) {
-				dictionary.put(currentChar, true);
-			}else {
+	public boolean isUnique(String str) {
+		int checker = 0;
+		for(int i=0; i<str.length(); i++) {
+			int val = str.charAt(i) - 'a';
+			if((checker & (1 << val)) > 0) {
 				return false;
 			}
+			checker |= (1 << val);
 		}
 		return true;
 	}
